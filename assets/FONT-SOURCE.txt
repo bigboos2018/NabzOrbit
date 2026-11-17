@@ -1,0 +1,3 @@
+Vazirmatn by Saber Rastikerdar and contributors. See OFL.txt.
+https://github.com/rastikerdar/vazirmatn/tree/83629f877e8f084cc07b47030b5d3a0ff06c76ec
+Unmodified static Regular and Bold TTF files.

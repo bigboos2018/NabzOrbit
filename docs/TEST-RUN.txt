@@ -1,0 +1,141 @@
+NABZ ORBIT 2.1 · LOCAL RELEASE RECORD
+Date: 2026-11-18 (Asia/Tehran)
+Platform: Linux/Mono with Xvfb (WinForms). Windows target, not a live-Windows adapter test.
+Compiler: Microsoft.Net.Compilers 1.3.2; official net46 reference assemblies 1.0.3.
+Build: C# 5, /noconfig /nostdlib+ /codepage:65001 /warnaserror+ /optimize+ /platform:anycpu; shipping /target:winexe; embedded manifest and icon.
+Binary: NabzOrbit.exe — 530432 bytes; SHA256 d007959c4cbb2a0243cba233fce5f17bb07ed7e89198df738dcead23f82cdae6
+Windows use of DnsQuery_W, IP_UNICAST_IF, UAC and real netsh/registry mutation was not exercised. No claimed Iranian ISP or game measurements. No authenticated GitHub run.
+
+1 / SOURCE CHECK (10 PUBLIC TABLES + 4 REGIONAL SNAPSHOTS)
+OK: Cloudflare: 1.1.1.1, 1.0.0.1
+OK: Google: 8.8.8.8, 8.8.4.4
+OK: Quad9: 9.9.9.9, 149.112.112.112
+OK: OpenDNS: 208.67.222.222, 208.67.220.220
+OK: AdGuard: 94.140.14.140, 94.140.14.141
+OK (regional snapshot; see docs/SOURCES.md): Shecan: 178.22.122.100, 185.51.200.2
+OK (regional snapshot; see docs/SOURCES.md): Begzar: 185.55.226.26, 185.55.225.25
+OK: Control D: 76.76.2.0, 76.76.10.0
+OK: DNS.SB: 185.222.222.222, 45.11.45.11
+OK: DNS4EU: 86.54.11.100, 86.54.11.200
+OK: CZ.NIC: 193.17.47.1, 185.43.135.1
+OK: Yandex: 77.88.8.8, 77.88.8.1
+OK (regional snapshot; see docs/SOURCES.md): Radar Game: 10.202.10.10, 10.202.10.11
+OK (regional snapshot; see docs/SOURCES.md): 403.online: 10.202.10.202, 10.202.10.102
+Upstream commit: 13387e910fd2291e1ea369630e0764edd0f60772
+Content SHA256: f8bcfeb00d22c3f1c963c90d69cacc5e3b6eec03f56b2f39c8066cedf2124f95
+
+2 / REGRESSION, NETWORK FIXTURES AND REAL FORMS WITH SIMULATED SETTINGS
+PASS  embedded catalog: 14 distinct catalog pairs, 12 public by default
+PASS  IPv4 inputs are canonical and numeric
+PASS  A IN query header and question
+PASS  realistic compressed A answer
+PASS  case-insensitive QNAME
+PASS  wrong response identity rejected
+PASS  error, non-answer, opcode and truncation rejected
+PASS  wrong question class/type rejected
+PASS  empty/referral answer rejected
+PASS  unrelated A record rejected
+PASS  bad record length rejected
+PASS  self pointer rejected without looping
+PASS  all prefix truncations rejected
+PASS  CNAME chain ending in A accepted
+PASS  UDP round trip over loopback validates wire response
+PASS  UDP round trip with wrong ID does not score
+PASS  no answer times out and is not scored
+PASS  pre-cancellation sends no query
+PASS  cancel an in-flight receive
+PASS  default pairs are public and regional pairs are isolated
+PASS  private, loopback, multicast, documentation and benchmark addresses are not candidate web destinations
+PASS  private A response marked non-public, not timed as useful
+PASS  mixed public/private A RRset fails closed
+PASS  NXDOMAIN accepted only for matching question and id
+PASS  P90 nearest rank, median and empty set
+PASS  each server needs nine of ten plus final target answer
+PASS  tail latency chooses among equally stable pairs
+PASS  packet success takes precedence over a small median
+PASS  separate DNS integrity and destination HTTP eligibility
+PASS  redirects, 401, 403, 405, 429, 451, 500 and malformed status are never success
+PASS  same provider's healthy standby becomes first
+PASS  full five-round catalog sweep: bounded steps and host-aware TLS memoization
+PASS  negative-control interception prevents HTTPS probe and recommendation
+PASS  private A on target prevents contacting it
+PASS  fast DNS with denied web path never recommended
+PASS  pre-cancelled survey performs no network operations
+PASS  stale reports and target/interface changes cannot authorize apply
+PASS  public guard returns before any TCP connection to a private address
+PASS  v1 journal can be restored by v2
+PASS  several switches retain the original automatic mode and renew token
+PASS  failed switch rolls back to previous pair and keeps first manual list
+PASS  switch rejects externally edited and wrong-interface settings
+PASS  first two watch samples cannot classify an outage
+PASS  three missing DNS readings with TCP responding imply only a DNS suspicion
+PASS  gateway silence alone is not a local outage
+PASS  local vs upstream requires correlated probes and gateway baseline
+PASS  no configured IPv4 resolver is unknown rather than an outage
+PASS  working standby is not labelled total DNS failure
+PASS  CSV keeps timezone, user marker and missing values distinct from zero
+PASS  exact regional allowlist cannot admit an adjacent private address or web target
+PASS  regional subnet collision and unknown mask fail closed
+PASS  baseline: cap at two distinct configured IPv4s; do not newly probe private catalog when opted out
+PASS  baseline and catalog share identical observations instead of double counting network traffic
+PASS  web destination and ordinary web have distinct cache keys even on the same IP
+PASS  one denied ordinary site falls back to a separately named control
+PASS  retain healthy current DNS for small absolute or relative P90 gains (one-address baseline)
+PASS  recommendation: packet success beats median, matching pair never needs reapplication
+PASS  matched UDP truncation performs real DNS-over-TCP retry on same loopback endpoint
+PASS  TCP fallback still rejects mismatched response identity
+PASS  foreign question in a truncated packet does not trigger TCP retry
+PASS  worker context rejects changed interface, DNS order, DHCP/manual mode, expired and future timestamps
+PASS  preflight and trial's direct check require both configured resolvers to answer
+PASS  Windows-record layout follows native pointer sizes; only related answer A/CNAME accepted
+PASS  native DNS mixed RRset, authority-only and CNAME loop cannot authorize a web connection
+PASS  post-change health needs target, both DNS and every pre-working ordinary site
+PASS  confirmation gate needs two consecutive fresh successes; two failures or expiry veto keep
+PASS  failed scan separates DNS/route clues from a denied target and preserves uncertainty
+PASS  a change between final preflight and capture cannot be staged
+PASS  a partially omitted baseline cannot be labelled wholly healthy
+PASS  timeout returns initial DHCP without retaining a stale lease
+PASS  failed health restores the whole ordered pre-trial manual list
+PASS  cancelled switch restores preceding good pair; later Disconnect still restores the first original
+PASS  external edits during the confirmation dialog are not overwritten even on timeout
+PASS  loss of journal ownership prevents stale trial from committing or rolling back
+PASS  dialog error rolls back; failed rollback retains first original in journal
+PASS  DHCP is restored as automatic, not a stale lease
+PASS  three manual servers are restored in original order after restart
+PASS  existing journal is never overwritten
+PASS  no write for identical configuration
+PASS  failure storing backup prevents all changes
+PASS  failure after partial set rolls back
+PASS  failed rollback retains recoverable baseline
+PASS  read-back mismatch never reports success
+PASS  external edit is not overwritten without consent
+PASS  stale session token cannot restore another session
+PASS  already-restored adapter clears backup without a write
+PASS  original list not yet effective keeps the snapshot and avoids another write
+PASS  recovery after interruption between apply and commit
+PASS  failed restoration preserves journal for retry
+PASS  invalid journal fails closed
+Gtk not found (missing LD_LIBRARY_PATH to libgtk-x11-2.0.so.0?), using built-in colorscheme
+PASS  main window opens, initializes twelve default rows and closes (read only)
+PASS  actual trial dialog times out without confirmation; slow checks never block its countdown
+PASS  unhealthy samples in real dialog trigger verified undo before expiry (fake adapter)
+PASS  closing the temporary trial window means undo, never implicit keep
+PASS  actual trial dialog only permits keep after two healthy check cycles
+
+95/95 passed.
+
+3 / SEPARATE LOOPBACK TLS TRANSPORT (DISPOSABLE TRUST ONLY)
+PASS  trusted loopback TLS: correct SNI/Host and HEAD 200
+PASS  trusted loopback TLS: 403 stays denied
+PASS  trusted loopback TLS: redirect not followed
+PASS  trusted issuer but wrong DNS name: reject before HTTP
+4/4 TLS transport checks passed.
+
+4 / SHIPPING BINARY (real entry point on Mono/Xvfb)
+Gtk not found (missing LD_LIBRARY_PATH to libgtk-x11-2.0.so.0?), using built-in colorscheme
+Release 2.1.0.0; ILOnly/I386; asInvoker; 12 unmeasured rows; 8 columns; private opt-in=False
+Release GUI open / inspect / close: PASS
+
+5 / PACKAGING
+Guide parsed: two labelled and decodable embedded screenshots, no network or script requirement. Independent mcs / official net46 + MinGW-resource cross-build also succeeded (not the packaged binary).
+The SHA256.txt at archive root lists hashes of the EXE, guide and every source entry in that particular package; tools/package.py verifies every digest and ZIP CRC after writing.
