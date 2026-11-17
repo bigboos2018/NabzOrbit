@@ -1,0 +1,28 @@
+name: Verify and package Nabz Orbit 2.1
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  portable-windows-app:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify the catalog against the pinned GitHub source
+        run: python tools/verify_catalog.py
+      - name: Compile the Windows executable
+        run: .\build.cmd
+        shell: cmd
+      - name: Recovery, protocol and WinForms tests (no adapter writes)
+        run: .\test.cmd --ui
+        shell: cmd
+      - name: Open and inspect the release GUI (read only)
+        run: .\tools\smoke.cmd
+        shell: cmd
+      - name: Package portable executable, Persian instructions and source
+        run: python tools/package.py release/NabzOrbit.exe release/NabzOrbit-2.1-Windows.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: NabzOrbit-2.1-Windows
+          path: release/NabzOrbit-2.1-Windows.zip
+          if-no-files-found: error
